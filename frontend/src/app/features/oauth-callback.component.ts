@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   standalone: true,
-  template: `<p>Signing you in...</p>`
+  template: `<p>Signing in...</p>`
 })
-export class OAuthCallbackComponent implements OnInit {
+export class OAuthCallbackComponent {
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
-  ngOnInit(): void {
+  constructor() {
 
-    const accessToken = this.route.snapshot.queryParamMap.get('accessToken');
-    const refreshToken = this.route.snapshot.queryParamMap.get('refreshToken');
+    const accessToken =
+      this.route.snapshot.queryParamMap.get('accessToken');
+
+    const refreshToken =
+      this.route.snapshot.queryParamMap.get('refreshToken');
 
     if (accessToken) {
-      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('aura.accessToken', accessToken);
     }
 
     if (refreshToken) {
-      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('aura.refreshToken', refreshToken);
     }
 
-    this.router.navigate(['/']);
+    this.router.navigateByUrl('/');
   }
 }
