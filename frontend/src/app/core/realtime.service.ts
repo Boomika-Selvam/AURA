@@ -6,7 +6,7 @@ export class RealtimeService {
   private socket?: Socket;
 
   connect() {
-    this.socket = this.socket || io('http://localhost:5000', { withCredentials: true });
+    this.socket = this.socket || io('https://aura-ljpr.onrender.com', { withCredentials: true });
     return this.socket;
   }
 

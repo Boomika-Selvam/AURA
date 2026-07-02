@@ -17,7 +17,7 @@ import { ApiService } from '../core/api.service';
           <label>Email <input formControlName="email" type="email" /></label>
           <label>Password <input formControlName="password" type="password" /></label>
           <button type="submit" [disabled]="form.invalid">Log in</button>
-          <a class="google" href="http://localhost:5000/api/auth/google">Continue with Google</a>
+          <a class="google" href="https://aura-ljpr.onrender.com/api/auth/google">Continue with Google</a>
         </form>
         <p>New to AURA? <a routerLink="/register">Create an account</a></p>
       </section>

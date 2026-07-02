@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DirectoryItem, Invite, Notification, Space, Sprint, User, WorkItem } from './models';
 
-const API = 'http://localhost:5000/api';
+const API = 'https://aura-ljpr.onrender.com/api';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
