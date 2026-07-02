@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'login', loadComponent: () => import('./app/features/login.component').then((m) => m.LoginComponent) },
   { path: 'register', loadComponent: () => import('./app/features/register.component').then((m) => m.RegisterComponent) },
   { path: 'accept-invite', loadComponent: () => import('./app/features/accept-invite.component').then((m) => m.AcceptInviteComponent) },
+  { path: 'oauth/callback',loadComponent: () => import('./app/features/oauth-callback.component').then(m => m.OAuthCallbackComponent) },
   { path: '', loadComponent: () => import('./app/shell.component').then((m) => m.ShellComponent), canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
