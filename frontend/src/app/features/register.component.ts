@@ -41,8 +41,13 @@ export class RegisterComponent {
   });
 
   submit() {
+  console.log("Submit clicked");
+
   this.error = '';
+
   const body = this.form.getRawValue();
+
+  console.log(body);
 
   if (body.password !== body.confirmPassword) {
     this.error = 'Password and confirm password must match.';
@@ -50,21 +55,31 @@ export class RegisterComponent {
   }
 
   if (this.form.invalid) {
-    this.error = 'Enter a valid name, email, and password with at least 8 characters.';
+    this.error = 'Form invalid';
+    console.log(this.form.errors);
+    console.log(this.form.status);
     return;
   }
 
+  console.log("Calling API...");
+
   this.api.register(body).subscribe({
     next: (session) => {
+      console.log("Success", session);
+
       localStorage.setItem('aura.accessToken', session.accessToken);
       localStorage.setItem('aura.refreshToken', session.refreshToken);
+
       this.router.navigateByUrl('/');
     },
-    error: (response) => {
+    error: (err) => {
+      console.log("API ERROR");
+      console.log(err);
+
       this.error =
-        response?.error?.message ||
-        response?.error?.errors?.[0]?.msg ||
-        'Registration failed. Check that the backend is running.';
+        err?.error?.message ||
+        err?.error?.errors?.[0]?.msg ||
+        'Registration failed';
     }
   });
 }
